@@ -6,7 +6,7 @@ public class Ghost : MonoBehaviour
    public GhostHome home { get; private set; }
    public GhostScatter scatter { get; private set; }
    public GhostChase chase { get; private set; }
-   public GhostFrightenned frightenned { get; private set; }
+   public GhostFrightened frightened { get; private set; }
    public GhostBehavior initialBehavior;
    public Transform target;
    public int points = 200; //pontuacao por comer um fantasma
@@ -17,7 +17,7 @@ public class Ghost : MonoBehaviour
       this.home = GetComponent<GhostHome>();
       this.scatter = GetComponent<GhostScatter>();
       this.chase = GetComponent<GhostChase>();
-      this.frightenned = GetComponent<GhostFrightenned>();
+      this.frightened = GetComponent<GhostFrightened>();
    }
 
    private void Start()
@@ -30,7 +30,7 @@ public class Ghost : MonoBehaviour
       this.movement.ResetState();
       this.gameObject.SetActive(true);
 
-      this.frightenned.Disable();
+      this.frightened.Disable();
       this.chase.Disable();
       this.scatter.Enable();
 
@@ -48,7 +48,7 @@ public class Ghost : MonoBehaviour
    {
       if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
       {
-         if (this.frightenned.enabled){
+         if (this.frightened.enabled){
             FindObjectOfType<GameManager>().GhostEaten(this); //se o modo como medo estiver ativado, o fantasma eh comido
          } else {
             FindObjectOfType<GameManager>().PacmanEaten(); //se estiver desativado, o pacman eh comido

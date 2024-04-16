@@ -109,6 +109,10 @@ public class GameManager : MonoBehaviour
 
     public void PowerPelleteEaten(PowerPellet pellet)
     {
+        for (int i = 0; i < this.ghosts.Length; i ++){
+            this.ghosts[i].frightened.Enable(pellet.duration);
+        }
+
         PelletEaten(pellet);
         CancelInvoke(); //cancela o invoke caso o tempo do powerpellet nao tenha acabado e outro seja comido
         Invoke(nameof(ResetGhostMultiplier), pellet.duration); //reseta o multiplicador quando o tempo do powerpellet acaba
